@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model interview.Models.Employee
+
+<div class="mt-4 container">
+    <form method="post" class="border-1 border-info">
+        <div class="mt-2">
+            <label class="form-label">Id</label>
+            <input type="text" class="form-control" asp-for="Id" readonly />
+        </div>
+        <div class="mt-2">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="Name" />
+        </div>
+        <div class="mt-2">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" asp-for="Email" />
+        </div>
+        <div class="mt-2">
+            <label class="form-label">Haurly Wage</label>
+            <input type="text" class="form-control" asp-for="HaurlyWage" />
+        </div>
+        <div class="mt-2">
+            <input type="checkbox" class="form-check-input" asp-for="IsWorking" />
+            <label class="form-label">Is Working</label>
+
+        </div>
+        <div class="mt-2">
+            <button type="submit" class="btn btn-outline-primary">Save</button>
+            <button type="submit" class="btn btn-outline-danger" asp-controller="Employee" asp-action="Delete">Delete</button>
+        </div>
+
+
+    </form>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+</div>

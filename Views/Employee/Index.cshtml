@@ -1,0 +1,56 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<interview.Models.Employee>
+<div class="container mt-4">
+    <div class="row btn-container">
+        <div class="col-12 col-md-3 offset-md-9">
+            <a asp-controller="Employee" asp-action="Add" class="btn btn-outline-primary w-100">Add New Employee</a>
+        </div>
+    </div>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Hourly Wage</th>
+                        <th>Still Working</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model is null)
+                    {
+                        <tr><td colspan="5" class="text-center">No record of employee found</td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var employee in Model)
+                        {
+                            <tr>
+                                <td>@employee.Id</td>
+                                <td>@employee.Name</td>
+                                <td>@employee.Email</td>
+                                <td>@employee.HaurlyWage.ToString("0.00")</td>
+                                <td>@(employee.IsWorking ? "Working" : "Left")</td>
+                                <td><a class="btn btn-secondary" asp-controller="Employee" asp-action="Edit" asp-route-id="@employee.Id">Edit</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
